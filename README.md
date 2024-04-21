@@ -23,6 +23,7 @@ bee pack -be GOOS=windows
 # linux 打包
 bee pack -be GOOS=linux
 ```
+![image](https://raw.githubusercontent.com/joanbabyfet/md_img/master/kaiyun/kaiyun.png)
 
 ## Requires
 go v1.19.3
