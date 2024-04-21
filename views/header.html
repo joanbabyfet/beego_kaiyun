@@ -1,0 +1,59 @@
+<style>
+    .head_nav a {
+        cursor: pointer;
+    }
+</style>
+<div class="header_top">
+    <div class="center flex">
+        <div>联系电话：{{.config.tel}}</div>
+        <div class="header_top_r">
+
+            <div class="search" id="search">
+                <input type="text" value="" placeholder="搜索关键词" />
+                <input type="submit" value="" />
+            </div>
+        </div>
+    </div>
+</div>
+<div class="header">
+    <div class="center flex">
+        <a href="/" class="logo1"><img src="{{.config.logo}}" alt="" /></a>
+        <ul class="head_nav_content">
+            {{range $pk,$pv := .pCate}}
+            <li class="head_nav" data-url='' data-id="{{.Id}}" id="pn_{{.Id}}">
+                <a data-href="{{.Url}}" data-id="{{.Id}}"  id="p_{{.Id}}">{{.Name}}</a>
+                {{if ne .Sort 0}}
+                <div class="nav_list">
+                    <div class="nav_z">
+                        <div class="nav_z_l">
+                            <div><a  data-id="{{.Id}}" data-href="{{.Url}}">{{.Name}}</a></div>
+                        </div>
+                    </div>
+                </div>
+                {{end}}
+            </li>
+            {{end}}
+        </ul>
+    </div>
+</div>
+
+<div class="nav">
+    <a href="" class="logo1"><img src="{{.config.logo}}" alt=""/></a>
+    <div class="menu">
+        <div class="aa"></div>
+        <div class="bb"></div>
+        <div class="cc"></div>
+    </div>
+    <div class="menu_list">
+        <ul>
+            {{range $pk,$pv := .pCate}}
+            <li><a href="{{.Url}}">{{.Name}}</a></li>
+            {{end}}
+
+        </ul>
+        <div class="wap_search" id="wap_search">
+            <input type="text" value="" placeholder="搜索关键词"/>
+            <input type="submit" value=""/>
+        </div>
+    </div>
+</div>

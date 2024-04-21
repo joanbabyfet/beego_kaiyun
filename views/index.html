@@ -1,0 +1,126 @@
+<div class="banner">
+    <div class="swiper-container" id="banner">
+        <div class="swiper-wrapper">
+            {{range $img := .imgs}}
+            <div class="swiper-slide">
+                <a href=""><img src="{{.url}}" alt=""/></a>
+            </div>
+            {{end}}
+        </div>
+    </div>
+    <div class="slide_prev swiper-button-prev"></div>
+    <div class="slide_next swiper-button-next"></div>
+    <div class="pagination" id="pagination"></div>
+</div>
+<div class="title">
+    <span>关于我们</span>
+    <em>About Us</em>
+</div>
+<div class="center flex aboutUs">
+    <a href="" class="about_img">
+        <img src="{{.about.Img}}" alt=""/>
+    </a>
+    <div class="about_con">
+        <div class="about_title"><a href="javascript:void(0);"  class="go" data-href="/about?id=14">{{.about.Title}}</a></div>
+        <div class="about_text">
+            {{str2html .about.Content}}
+        </div>
+        <a class="more go" href="javascript:void(0);"  data-href="/about?id=14">查看详情</a>
+    </div>
+</div>
+<div class="service" style="background-image: url(/static/img/pic20.jpg);" >
+	<div class=" center">
+<div class="title">
+    <span>技术服务</span>
+    <em>TECHNICAL SERVICES</em>
+</div>
+<div class="service_img">
+    {{range $bk,$bv := .service.bg}}
+    <img src="{{$bv.url}}" alt="" />
+    {{end}}
+</div>
+</div>
+</div>
+<div class="title">
+    <span>自主产品</span>
+    <em>INDEPENDENT PRODUCT</em>
+</div>
+<div class="myself" style="background-image: url(/static/img/pic2.png);">
+    <ul>
+        {{range $pk,$pv := .products}}
+        <li>
+            <div class="cp_show">
+                <img src="{{.Img}}" alt=""/>
+                <div>{{.Title}}</div>
+            </div>
+            <div class="cp_hide">
+                <img src="/static/img/pic1.png" alt=""/>
+                <div>{{.Info}}</div>
+                <a href="javascript:void(0);" class="go" data-href="/product?id=20">查看更多</a>
+            </div>
+        </li>
+        {{end}}
+    </ul>
+</div>
+<div class="gm_list" style="background-image: url(/static/img/pic4.png);">
+    <div class="center">
+        <ul>
+            <li>
+                <span>{{.config.capital}}</span>
+                <em>注册资本</em>
+            </li>
+            <li>
+                <span>{{.config.scale}}</span>
+                <em>营业规模</em>
+            </li>
+            <li>
+                <span>{{.config.space}}</span>
+                <em>场地面积</em>
+            </li>
+            <li>
+                <span>{{.config.pnumber}}</span>
+                <em>公司人数</em>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="friend" style="background-image: url(/static/img/pic6.jpg);">
+    <div class="center">
+        <div class="title">
+            <span>合作伙伴</span>
+            <em>PARTNER</em>
+        </div>
+        <ul>
+            {{range $nk,$nv := .partners}}
+            <li>
+                <a href="javascript:void(0);" class="go" data-href="partner?id=24"><img src="{{.url}}" alt=""/></a>
+            </li>
+            {{end}}
+
+        </ul>
+        <a href="javascript:void(0);" data-href="partner?id=24" class="lookMore go">查看更多<span>+</span></a>
+    </div>
+</div>
+<div class="news" style="background-image: url(/static/img/pic3.png);">
+    <div class="center">
+        <div class="title">
+            <span>主要案例</span>
+            <em>MAIN CASE</em>
+        </div>
+        <ul>
+            {{range $ak,$av := .articles}}
+            <li>
+                <a href="javascript:void(0);" data-href="/case?id=11" class="go">
+                    <span class="news_img"><img src="{{.Img}}" alt=""/></span>
+                    <span class="news_title">{{.Title}}</span>
+                    <span class="news_con">{{.Info}}</span>
+                </a>
+            </li>
+            {{end}}
+
+        </ul>
+        <div class="lookMore">
+            <a  href="javascript:void(0);" class="go" data-href="/case?id=11">更多案例</a>
+        </div>
+    </div>
+</div>

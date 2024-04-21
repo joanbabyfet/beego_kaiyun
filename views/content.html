@@ -1,0 +1,13 @@
+<div class="center">
+    <div class="curPosition"><a href="" class="ts">首页</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="">公司资质</a></div>
+    <div class="news_content">
+        <div class="news_con_title">{{.one.Title}}</div>
+        <div class="news_con_time">
+            <span>来源：科技网</span>
+            <span>发布时间：{{.one.CreateTime}}</span>
+        </div>
+        <div class="news_cons">
+            {{str2html .one.Content}}
+        </div>
+    </div>
+</div>

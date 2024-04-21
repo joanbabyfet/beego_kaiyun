@@ -1,0 +1,33 @@
+<div class="center">
+    <div class="curPosition"><a href="" class="ts">首页</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="">{{.Title}}</a></div>
+</div>
+<div class="cp_tab">
+    <div class="center">
+        {{range .products}}
+        <a data-id="{{.Id}}" id="p_{{.Catid}}">{{.Title}}</a>
+        {{end}}
+    </div>
+</div>
+<div class="center">
+    <ul class="cp_list">
+        {{range .products}}
+        <a name="{{.Id}}"></a>
+        <a name="{{.Catid}}"></a>
+        <li>
+            <div class="div"></div>
+            <div class="cp_list_zy">
+                <span>{{.Title}}</span>
+                <em>{{.Info}}</em>
+            </div>
+            <div class="flex">
+                <div class="cp_text">
+                   {{str2html .Content}}
+                </div>
+                <div class="cp_img">
+                    <img src="{{.Img}}" alt="" />
+                </div>
+            </div>
+        </li>
+        {{end}}
+    </ul>
+</div>

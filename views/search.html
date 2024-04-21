@@ -1,0 +1,46 @@
+<div class="grey"></div>
+<div class="center">
+    <div class="result_title"><span>“{{.keyword}}”</span>搜索结果</div>
+    <div class="flex search_flex">
+        <ul class="search_tab"  style="margin-bottom: 50px">
+            <li><div>分类</div></li>
+            <li {{if eq .index 0}} class="current" {{end}} ><a href="?keyword={{.keyword}}&index=0">客户和案例</a></li>
+            <li {{if eq .index 1}} class="current" {{end}} ><a href="?keyword={{.keyword}}&index=1">自主产品</a></li>
+        </ul>
+        <div class="result_list">
+            <div class="number">找到<span>{{.count}}</span>条记录</div>
+            <ul class="result_list_tw">
+                {{range .data}}
+
+                {{if eq .Img ""}}
+                <li class="result_list_text">
+                    <a href="/content/{{.Id}}?index={{$.index}}">
+						<span>
+							<span>{{.CreateTime}}</span>
+							<em>{{.CreateTime}}</em>
+						</span>
+                        <em>
+                            <span>{{.Title}}</span>
+                            <em>{{.Info}}</em>
+                        </em>
+                    </a>
+                </li>
+                {{else}}
+                <li class="result_list_tw result_list_text">
+                    <a href="/content/{{.Id}}?index={{$.index}}">
+                        <span><img src="{{.Img}}" alt="" /></span>
+                        <em>
+                            <span>{{.Title}}</span>
+                            <em>{{.Info}}</em>
+                        </em>
+                    </a>
+                </li>
+                {{end}}
+                {{end}}
+            </ul>
+            <div class="page">
+                {{str2html .pagebar}}
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="center">
+    <div class="curPosition"><a href="" class="ts">首页</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="">客户和案例</a></div>
+    <div class="al_title">行业客户</div>
+    <ul class="kh_list">
+        <li>
+            {{range .imgs}}
+            <div class="border">
+                <div><img src="{{.url}}" alt="" /></div>
+            </div>
+            {{end}}
+        </li>
+
+    </ul>
+    <a name="1"></a>
+    <div class="al_title">主要案例</div>
+    <ul class="al_list">
+        {{range .articles}}
+        <li class="flex">
+            <div class="al_text">
+                <div class="al_text_title">{{.Title}}</div>
+
+                <div class="al_text_jj">{{.Extra}}</div>
+                <ul>
+                    <li><span>项目规模：</span>{{.Info}}</li>
+                    <li><span>项目难点：</span>{{str2html .Content}}</li>
+                </ul>
+            </div>
+            <div class="al_img">
+                <img src="{{.Img}}" alt="" />
+            </div>
+        </li>
+        {{end}}
+
+    </ul>
+    <div class="page">
+        {{str2html .pagebar}}
+    </div>
+</div>
