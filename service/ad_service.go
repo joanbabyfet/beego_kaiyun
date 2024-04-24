@@ -62,7 +62,7 @@ func (s *AdService) Save(data models.Ad) (int, error) {
 		data.Status = 1
 		data.CreateUser = "1"                  //添加人
 		data.CreateTime = utils.GetTimestamp() //添加时间
-		id, _ := data.Add()
+		id, err := data.Add()
 		if id <= 0 {
 			logs.Error("广告添加失败", err)
 			return -4, errors.New("广告添加失败")
