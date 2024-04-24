@@ -106,7 +106,7 @@ func SendSMS(to string, body string) bool {
 	}
 	response, _ := json.Marshal(*resp) //将数据编码为json字符串, 返回[]uint8
 	//返回json字符串写入日志
-	logs.Error(string(response))
+	logs.Info(string(response))
 
 	return true
 }

@@ -26,7 +26,7 @@ func init() {
 	//注册数据库
 	err := orm.RegisterDataBase("default", "mysql", dsn, max_idle, max_conn)
 	if err != nil {
-		logs.Error("连接数据库出错")
+		logs.Error("连接数据库出错", err)
 	}
 
 	// 自动建表 (前提为数据库与model已注册)
@@ -40,7 +40,7 @@ func init() {
 
 	//日志设置
 	logs.Async() //支持非同步
-	logs.SetLogger(logs.AdapterFile, `{"filename":"logs/app.log", "level":7}`)
+	logs.SetLogger(logs.AdapterMultiFile, `{"filename":"logs/app.log","separate":["error", "info"]}`)
 
 	//后端解决跨域
 	beego.InsertFilter("*", beego.BeforeRouter, cors.Allow(&cors.Options{

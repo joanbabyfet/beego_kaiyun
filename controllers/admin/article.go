@@ -1,4 +1,3 @@
-// 父控制器
 package admin
 
 import (
@@ -25,7 +24,7 @@ func (c *ArticleController) Index() {
 		page_size = 10
 	}
 
-	//获取广告列表
+	//获取文章列表
 	query := dto.ArticleQuery{}
 	query.Catid = catid
 	query.Page = page
@@ -65,7 +64,7 @@ func (c *ArticleController) Detail() {
 	service_article := new(service.ArticleService)
 	info, err := service_article.GetById(id)
 	if err != nil {
-		c.ErrorJson(-2, "该数据不存在", nil)
+		c.ErrorJson(-2, err.Error(), nil)
 	}
 	c.SuccessJson("success", info)
 }

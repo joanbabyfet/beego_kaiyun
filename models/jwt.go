@@ -7,7 +7,7 @@ import (
 	"io"
 	"time"
 
-	"github.com/beego/beego/logs"
+	"github.com/beego/beego/v2/core/logs"
 	"github.com/dgrijalva/jwt-go"
 	"golang.org/x/crypto/scrypt"
 )

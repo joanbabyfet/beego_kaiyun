@@ -7,8 +7,8 @@ import (
 	"kaiyun/utils"
 	"strings"
 
-	"github.com/beego/beego/logs"
 	"github.com/beego/beego/v2/client/cache"
+	"github.com/beego/beego/v2/core/logs"
 	beego "github.com/beego/beego/v2/server/web"
 	"github.com/beego/beego/v2/server/web/captcha"
 	"github.com/beego/i18n"

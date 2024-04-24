@@ -4,7 +4,7 @@ import (
 	"errors"
 	"kaiyun/models"
 
-	"github.com/beego/beego/logs"
+	"github.com/beego/beego/v2/core/logs"
 )
 
 type ContentService struct {
@@ -15,8 +15,8 @@ func (s *ContentService) GetByCode(code string) (*models.Content, error) {
 	entity := new(models.Content)
 	info, err := entity.GetByCode(code)
 	if err != nil {
-		logs.Error("该数据不存在")
-		return nil, errors.New("该数据不存在")
+		logs.Error("内容不存在 "+code, err)
+		return nil, errors.New("内容不存在")
 	}
 	return info, nil
 }

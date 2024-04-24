@@ -4,7 +4,7 @@ package controllers
 import (
 	"net/http"
 
-	"github.com/beego/beego/logs"
+	"github.com/beego/beego/v2/core/logs"
 	"github.com/gorilla/websocket"
 )
 
