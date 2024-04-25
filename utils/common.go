@@ -16,12 +16,16 @@ import (
 	"github.com/beego/beego"
 	"github.com/beego/beego/v2/core/logs"
 	"github.com/beego/beego/v2/core/validation"
+	"github.com/mojocn/base64Captcha"
 	"github.com/sashabaranov/go-openai"
 	"github.com/twilio/twilio-go"
 	twilioApi "github.com/twilio/twilio-go/rest/api/v2010"
 	"golang.org/x/crypto/bcrypt"
 	"gopkg.in/gomail.v2"
 )
+
+// 验证码存放
+var Store = base64Captcha.DefaultMemStore
 
 func Md5(str string) string {
 	hash := md5.New()
@@ -209,4 +213,12 @@ func DisplayVideo(filename string) string {
 		return ""
 	}
 	return beego.AppConfig.String("file_url") + "/video/" + filename
+}
+
+// 获取图片验证码
+func GetCaptcha() (string, string, string, error) {
+	driver := base64Captcha.DefaultDriverDigit
+	captcha := base64Captcha.NewCaptcha(driver, Store)
+	id, b64s, answer, err := captcha.Generate()
+	return id, b64s, answer, err
 }

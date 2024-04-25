@@ -11,8 +11,22 @@ type CommonController struct {
 }
 
 // 获取验证码
+// func (c *CommonController) Captcha() {
+// 	c.TplName = "admin/captcha.html"
+// }
+
+// 获取验证码
 func (c *CommonController) Captcha() {
-	c.TplName = "admin/captcha.html"
+	id, b64s, _, err := utils.GetCaptcha()
+	if err != nil {
+		c.ErrorJson(-1, "生成验证码错误", nil)
+	}
+
+	//组装数据
+	resp := make(map[string]interface{}) //创建1个空集合
+	resp["key"] = id
+	resp["img"] = b64s
+	c.SuccessJson("success", resp)
 }
 
 // 获取列表
