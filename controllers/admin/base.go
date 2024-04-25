@@ -50,7 +50,7 @@ func (c *AdminBaseController) SuccessJson(msg string, data interface{}) {
 	if data == nil || data == "" {
 		data = struct{}{}
 	}
-	timestamp := utils.GetTimestamp()
+	timestamp := utils.Timestamp()
 	res := ReturnMsg{
 		consts.SUCCESS, msg, timestamp, data, //0=成功
 	}
@@ -74,7 +74,7 @@ func (c *AdminBaseController) ErrorJson(code int, msg string, data interface{}) 
 	if data == nil || data == "" {
 		data = struct{}{}
 	}
-	timestamp := utils.GetTimestamp()
+	timestamp := utils.Timestamp()
 	res := ReturnMsg{
 		code, msg, timestamp, data,
 	}

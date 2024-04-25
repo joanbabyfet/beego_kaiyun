@@ -55,8 +55,41 @@ func UniqueId() string {
 	return Md5(base64.URLEncoding.EncodeToString(b))
 }
 
-func GetTimestamp() int {
-	return int(time.Now().Unix())
+// 获取时间戳
+func Timestamp() int {
+	t := time.Now().Unix()
+	return int(t)
+}
+
+// 获取当前日期时间
+func DateTime() string {
+	return time.Now().Format("2006-01-02 15:04:05")
+}
+
+// 获取当前日期
+func Date() string {
+	return time.Now().Format("2006-01-02")
+}
+
+// 时间戳转日期
+func UnixToDateTime(timestramp int) string {
+	t := time.Unix(int64(timestramp), 0)
+	return t.Format("2006-01-02 15:04:05") //通用时间模板定义
+}
+
+// 时间戳转日期
+func UnixToDate(timestramp int) string {
+	t := time.Unix(int64(timestramp), 0)
+	return t.Format("2006-01-02") //通用时间模板定义
+}
+
+// 日期转时间戳
+func DateToUnix(str string) int {
+	t, err := time.ParseInLocation("2006-01-02 15:04:05", str, time.Local)
+	if err != nil {
+		return 0
+	}
+	return int(t.Unix())
 }
 
 // 发送邮件

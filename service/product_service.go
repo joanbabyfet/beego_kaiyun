@@ -51,8 +51,8 @@ func (s *ProductService) Save(data models.Product) (int, error) {
 		info.Catid = data.Catid
 		info.Title = data.Title
 		info.Status = data.Status
-		info.UpdateUser = "1"                  //修改人
-		info.UpdateTime = utils.GetTimestamp() //修改时间
+		info.UpdateUser = "1"               //修改人
+		info.UpdateTime = utils.Timestamp() //修改时间
 		ok, _ := info.UpdateById()
 		if ok != 1 {
 			logs.Error("产品更新 "+strconv.Itoa(data.Id), err)
@@ -60,8 +60,8 @@ func (s *ProductService) Save(data models.Product) (int, error) {
 		}
 	} else {
 		data.Status = 1
-		data.CreateUser = "1"                  //添加人
-		data.CreateTime = utils.GetTimestamp() //添加时间
+		data.CreateUser = "1"               //添加人
+		data.CreateTime = utils.Timestamp() //添加时间
 		id, _ := data.Add()
 		if id <= 0 {
 			logs.Error("产品添加失败")
@@ -96,8 +96,8 @@ func (s *ProductService) DeleteById(id int) (int, error) {
 		return -2, errors.New("产品不存在")
 	}
 
-	info.DeleteUser = "1"                  //修改人
-	info.DeleteTime = utils.GetTimestamp() //修改时间
+	info.DeleteUser = "1"               //修改人
+	info.DeleteTime = utils.Timestamp() //修改时间
 	ok, _ := info.UpdateById()
 	if ok != 1 {
 		logs.Error("产品删除 "+strconv.Itoa(id), err)
@@ -119,8 +119,8 @@ func (s *ProductService) EnableById(id int) (int, error) {
 	}
 
 	info.Status = 1
-	info.UpdateUser = "1"                  //修改人
-	info.UpdateTime = utils.GetTimestamp() //修改时间
+	info.UpdateUser = "1"               //修改人
+	info.UpdateTime = utils.Timestamp() //修改时间
 	ok, _ := info.UpdateById()
 	if ok != 1 {
 		logs.Error("产品启用 "+strconv.Itoa(id), err)
@@ -142,8 +142,8 @@ func (s *ProductService) DisableById(id int) (int, error) {
 	}
 
 	info.Status = 0
-	info.UpdateUser = "1"                  //修改人
-	info.UpdateTime = utils.GetTimestamp() //修改时间
+	info.UpdateUser = "1"               //修改人
+	info.UpdateTime = utils.Timestamp() //修改时间
 	ok, _ := info.UpdateById()
 	if ok != 1 {
 		logs.Error("产品禁用 "+strconv.Itoa(id), err)

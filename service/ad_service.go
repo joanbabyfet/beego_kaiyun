@@ -51,8 +51,8 @@ func (s *AdService) Save(data models.Ad) (int, error) {
 		info.Catid = data.Catid
 		info.Title = data.Title
 		info.Status = data.Status
-		info.UpdateUser = "1"                  //修改人
-		info.UpdateTime = utils.GetTimestamp() //修改时间
+		info.UpdateUser = "1"               //修改人
+		info.UpdateTime = utils.Timestamp() //修改时间
 		ok, _ := info.UpdateById()
 		if ok != 1 {
 			logs.Error("广告更新 "+strconv.Itoa(data.Id), err)
@@ -60,8 +60,8 @@ func (s *AdService) Save(data models.Ad) (int, error) {
 		}
 	} else {
 		data.Status = 1
-		data.CreateUser = "1"                  //添加人
-		data.CreateTime = utils.GetTimestamp() //添加时间
+		data.CreateUser = "1"               //添加人
+		data.CreateTime = utils.Timestamp() //添加时间
 		id, err := data.Add()
 		if id <= 0 {
 			logs.Error("广告添加失败", err)
@@ -96,8 +96,8 @@ func (s *AdService) DeleteById(id int) (int, error) {
 		return -2, errors.New("广告不存在")
 	}
 
-	info.DeleteUser = "1"                  //修改人
-	info.DeleteTime = utils.GetTimestamp() //修改时间
+	info.DeleteUser = "1"               //修改人
+	info.DeleteTime = utils.Timestamp() //修改时间
 	ok, _ := info.UpdateById()
 	if ok != 1 {
 		logs.Error("广告删除 "+strconv.Itoa(id), err)
@@ -119,8 +119,8 @@ func (s *AdService) EnableById(id int) (int, error) {
 	}
 
 	info.Status = 1
-	info.UpdateUser = "1"                  //修改人
-	info.UpdateTime = utils.GetTimestamp() //修改时间
+	info.UpdateUser = "1"               //修改人
+	info.UpdateTime = utils.Timestamp() //修改时间
 	ok, _ := info.UpdateById()
 	if ok != 1 {
 		logs.Error("广告启用 "+strconv.Itoa(id), err)
@@ -142,8 +142,8 @@ func (s *AdService) DisableById(id int) (int, error) {
 	}
 
 	info.Status = 0
-	info.UpdateUser = "1"                  //修改人
-	info.UpdateTime = utils.GetTimestamp() //修改时间
+	info.UpdateUser = "1"               //修改人
+	info.UpdateTime = utils.Timestamp() //修改时间
 	ok, _ := info.UpdateById()
 	if ok != 1 {
 		logs.Error("广告禁用 "+strconv.Itoa(id), err)

@@ -109,7 +109,7 @@ func (c *BaseController) SuccessJson(msg string, data interface{}) {
 	if data == nil || data == "" {
 		data = struct{}{}
 	}
-	timestamp := utils.GetTimestamp()
+	timestamp := utils.Timestamp()
 	res := &ReturnMsg{
 		consts.SUCCESS, msg, timestamp, data, //0=成功
 	}
@@ -133,7 +133,7 @@ func (c *BaseController) ErrorJson(code int, msg string, data interface{}) {
 	if data == nil || data == "" {
 		data = struct{}{}
 	}
-	timestamp := utils.GetTimestamp()
+	timestamp := utils.Timestamp()
 	res := &ReturnMsg{
 		code, msg, timestamp, data,
 	}

@@ -51,8 +51,8 @@ func (s *CategoryService) Save(data models.Category) (int, error) {
 		info.Pid = data.Pid
 		info.Name = data.Name
 		info.Status = data.Status
-		info.UpdateUser = "1"                  //修改人
-		info.UpdateTime = utils.GetTimestamp() //修改时间
+		info.UpdateUser = "1"               //修改人
+		info.UpdateTime = utils.Timestamp() //修改时间
 		ok, _ := info.UpdateById()
 		if ok != 1 {
 			logs.Error("类别更新 "+strconv.Itoa(data.Id), err)
@@ -60,8 +60,8 @@ func (s *CategoryService) Save(data models.Category) (int, error) {
 		}
 	} else {
 		data.Status = 1
-		data.CreateUser = "1"                  //添加人
-		data.CreateTime = utils.GetTimestamp() //添加时间
+		data.CreateUser = "1"               //添加人
+		data.CreateTime = utils.Timestamp() //添加时间
 		id, _ := data.Add()
 		if id <= 0 {
 			logs.Error("类别添加失败")
@@ -96,8 +96,8 @@ func (s *CategoryService) DeleteById(id int) (int, error) {
 		return -2, errors.New("类别不存在")
 	}
 
-	info.DeleteUser = "1"                  //修改人
-	info.DeleteTime = utils.GetTimestamp() //修改时间
+	info.DeleteUser = "1"               //修改人
+	info.DeleteTime = utils.Timestamp() //修改时间
 	ok, _ := info.UpdateById()
 	if ok != 1 {
 		logs.Error("类别删除 "+strconv.Itoa(id), err)
@@ -119,8 +119,8 @@ func (s *CategoryService) EnableById(id int) (int, error) {
 	}
 
 	info.Status = 1
-	info.UpdateUser = "1"                  //修改人
-	info.UpdateTime = utils.GetTimestamp() //修改时间
+	info.UpdateUser = "1"               //修改人
+	info.UpdateTime = utils.Timestamp() //修改时间
 	ok, _ := info.UpdateById()
 	if ok != 1 {
 		logs.Error("类别启用 "+strconv.Itoa(id), err)
@@ -142,8 +142,8 @@ func (s *CategoryService) DisableById(id int) (int, error) {
 	}
 
 	info.Status = 0
-	info.UpdateUser = "1"                  //修改人
-	info.UpdateTime = utils.GetTimestamp() //修改时间
+	info.UpdateUser = "1"               //修改人
+	info.UpdateTime = utils.Timestamp() //修改时间
 	ok, _ := info.UpdateById()
 	if ok != 1 {
 		logs.Error("类别禁用 "+strconv.Itoa(id), err)
