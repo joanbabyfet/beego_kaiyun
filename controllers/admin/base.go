@@ -35,8 +35,6 @@ func init() {
 
 // 定义prepare方法, 用户扩展用
 func (c *AdminBaseController) Prepare() {
-	//c.o = orm.NewOrm()
-
 }
 
 // @Title API成功响应

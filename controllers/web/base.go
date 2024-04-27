@@ -2,12 +2,10 @@
 package controllers
 
 import (
-	"encoding/json"
 	"kaiyun/consts"
 	"kaiyun/utils"
 	"strings"
 
-	"github.com/beego/beego/v2/client/cache"
 	"github.com/beego/beego/v2/core/logs"
 	beego "github.com/beego/beego/v2/server/web"
 	"github.com/beego/beego/v2/server/web/captcha"
@@ -32,11 +30,11 @@ func init() {
 	setLocale() // 设置多语言文件
 
 	//初始化验证码, 放在Prepare函数会报错
-	store := cache.NewMemoryCache()
-	cpt = captcha.NewWithFilter("/captcha/", store)
-	cpt.ChallengeNums = 4
-	cpt.StdWidth = 100
-	cpt.StdHeight = 40
+	// store := cache.NewMemoryCache()
+	// cpt = captcha.NewWithFilter("/captcha/", store)
+	// cpt.ChallengeNums = 4
+	// cpt.StdWidth = 100
+	// cpt.StdHeight = 40
 
 	//初始化表单验证信息
 	utils.SetVerifyMessage()
@@ -45,21 +43,6 @@ func init() {
 // 定义prepare方法, 用户扩展用
 func (c *BaseController) Prepare() {
 	setLang(c) //切换语言
-}
-
-func getRedisConfig() string {
-	key, _ := beego.AppConfig.String("redis_key") //redis key前缀 例 kaiyun:xxx
-	redis_host, _ := beego.AppConfig.String("redis_host")
-	redis_password, _ := beego.AppConfig.String("redis_password")
-	redis_port, _ := beego.AppConfig.String("redis_port")
-	redis_db, _ := beego.AppConfig.String("redis_db")
-	redisHash := make(map[string]interface{})
-	redisHash["key"] = key
-	redisHash["conn"] = redis_host + ":" + redis_port
-	redisHash["dbNum"] = redis_db
-	redisHash["password"] = redis_password
-	redisConfig, _ := json.Marshal(redisHash)
-	return string(redisConfig)
 }
 
 // 设置多语言文件
