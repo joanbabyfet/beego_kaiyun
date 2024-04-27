@@ -8,7 +8,6 @@ import (
 
 	"github.com/beego/beego/v2/core/logs"
 	beego "github.com/beego/beego/v2/server/web"
-	"github.com/beego/beego/v2/server/web/captcha"
 	"github.com/beego/i18n"
 )
 
@@ -19,7 +18,7 @@ type BaseController struct {
 
 // 全局变量
 var (
-	cpt         *captcha.Captcha
+	//cpt         *captcha.Captcha
 	lang        = "lang"
 	types       = "types"
 	accept_lang = "language"
