@@ -11,19 +11,19 @@ import (
 )
 
 var (
-	Cache        cache.Cache
-	CacheTimeout time.Duration //默认过期时间1天
+	Redis        cache.Cache
+	RedisTimeout time.Duration //默认过期时间1天
 )
 
 func init() {
 	//redis初始化配置
 	var err error
 	config := getRedisConfig()
-	Cache, err = cache.NewCache("redis", config)
+	Redis, err = cache.NewCache("redis", config)
 	if err != nil {
 		logs.Error("连接redis出错", err)
 	}
-	CacheTimeout = 86400 * time.Second
+	RedisTimeout = 86400 * time.Second
 }
 
 func getRedisConfig() string {
