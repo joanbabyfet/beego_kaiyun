@@ -69,5 +69,5 @@ func (c *CommonController) Ip() {
 
 // 检测用,可查看是否返回信息及时间戳
 func (c *CommonController) Ping() {
-	c.SuccessJson("success", nil)
+	c.SuccessJson("pong", nil)
 }

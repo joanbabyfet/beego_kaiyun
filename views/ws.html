@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>go websocket</title>
+    <meta charset="utf-8" />  
+</head>
+<body>
+    <script type="text/javascript">
+    var output;  
+
+    function init() { 
+        output = document.getElementById("output")
+        ws = new WebSocket("ws://127.0.0.1:8081/ws")
+        //连接开启时调用
+        ws.onopen = function() { 
+            console.log('Connection established')
+            heartbeat() //发送心跳包
+            sayhi()
+        }
+        //连接断开时调用
+        ws.onclose = function() { 
+            console.log('Connection closed')
+        }
+        //服务端送来消息时
+        ws.onmessage = function(event) { 
+            console.log('RESPONSE:' + event.data)
+            if (event.data == '~H#S~') {
+                return
+            }
+        }
+        //连接出错时调用
+        ws.onerror = function() { 
+            console.log('Connection error')
+        }
+    }
+
+    function onError(evt) { 
+        writeToScreen('<span style="color: red;">ERROR:</span> '+ evt.data)
+    }  
+
+    //发送消息
+    function sendMessage(message) { 
+        console.log('SENT: ' + message)
+        ws.send(message)
+    }
+
+    //連接上即發送心跳包，在10秒内未向服务端发送數據，将会被切断
+    function heartbeat()
+    {
+        let str = '~H#C~'
+        sendMessage(str)
+        setInterval(function () { //轮询8秒一次
+            sendMessage(str)
+        }, 8000)
+    }
+
+    //向服务器注册用户
+    function sayhi()
+    {
+        let obj = {
+        action: 'say_hi',
+        token: 'xxx',
+        }
+        sendMessage(JSON.stringify(obj))
+    }
+    
+    window.addEventListener("load", init, false)
+
+    function sendBtnClick(){
+        var msg = document.getElementById("input").value
+        sendMessage(msg)
+        document.getElementById("input").value = ''
+    }
+    </script>
+
+    <h2>WebSocket Test</h2>  
+    <input type="text" id="input"></input>
+    <button onclick="sendBtnClick()" >send</button>
+    <div id="output"></div>
+</body>
+</html>

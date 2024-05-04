@@ -4,6 +4,8 @@ import (
 	dto "kaiyun/dto"
 	"kaiyun/models"
 	"kaiyun/service"
+	"kaiyun/utils"
+	"strconv"
 
 	"github.com/beego/beego/v2/core/validation"
 )
@@ -105,6 +107,13 @@ func (c *ArticleController) Save() {
 	if stat < 0 {
 		c.ErrorJson(stat, err.Error(), nil)
 	}
+	//修改时
+	if data.Id > 0 {
+		//干掉緩存
+		cache_key := "article:id:" + strconv.Itoa(id)
+		utils.Redis.Delete(cache_key)
+	}
+
 	c.SuccessJson("success", nil)
 }
 
@@ -127,6 +136,10 @@ func (c *ArticleController) Delete() {
 	if stat < 0 {
 		c.ErrorJson(stat, err.Error(), nil)
 	}
+	//干掉緩存
+	cache_key := "article:id:" + strconv.Itoa(id)
+	utils.Redis.Delete(cache_key)
+
 	c.SuccessJson("success", nil)
 }
 
@@ -149,6 +162,10 @@ func (c *ArticleController) Enable() {
 	if stat < 0 {
 		c.ErrorJson(stat, err.Error(), nil)
 	}
+	//干掉緩存
+	cache_key := "article:id:" + strconv.Itoa(id)
+	utils.Redis.Delete(cache_key)
+
 	c.SuccessJson("success", nil)
 }
 
@@ -171,5 +188,9 @@ func (c *ArticleController) Disable() {
 	if stat < 0 {
 		c.ErrorJson(stat, err.Error(), nil)
 	}
+	//干掉緩存
+	cache_key := "article:id:" + strconv.Itoa(id)
+	utils.Redis.Delete(cache_key)
+
 	c.SuccessJson("success", nil)
 }

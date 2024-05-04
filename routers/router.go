@@ -21,9 +21,10 @@ func init() {
 	beego.Router("/service", &controllers.MainController{}, "get:Service")
 	beego.Router("/content/:id", &controllers.MainController{}, "get:Content")
 	beego.Router("/search", &controllers.MainController{}, "get:Search")
+	beego.Router("/ws_test", &controllers.MainController{}, "get:WSTest")
 
 	//ws服务端
-	beego.Router("/ws", &controllers.WSController{}, "get:Index")
+	beego.Router("/ws", &admin.WSController{}, "get:Index")
 
 	//后端接口
 	admin := beego.NewNamespace("/api",

@@ -436,3 +436,8 @@ func (c *MainController) Quality() {
 	c.LayoutSections["Footer"] = "footer.html"
 	c.TplName = "quality.html"
 }
+
+// ws测试
+func (c *MainController) WSTest() {
+	c.TplName = "ws.html"
+}
